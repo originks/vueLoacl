@@ -18,15 +18,18 @@
       width: 500px;
     }
 
-    input {
+    #inputDemo {
+      line-height: 30px;
       border: 0px;
       background-color: antiquewhite;
       width: 400px;
       height: 30px;
     }
-    li{
+
+    li {
       height: 50px;
-      font-size: 30px;
+      font-size: 20px;
+      line-height: 50px;
     }
   </style>
 </head>
@@ -36,14 +39,23 @@
     <h2 id="header">记事本</h2>
     <div id="demo">
       <ol>
-        <input type="text" placeholder="请输入待办事项" @keydown.enter="inputVal" v-model="message">
-        <li @mouseenter="showDelete(index)" @mouseleave="downDelete(index)" v-for="(item,index) in theVal"
-          style="text-align: left;border-bottom: 1px solid black;">{{item}}
-          <a :class="'deleteBtn'+index" style="display: none;" @click="removeVal(index)">删除</a>
+        <input id="inputDemo" type="text" placeholder="好好学习，天天向上" @keydown.enter="inputVal" v-model="message">
+        <li id="lisett" @mouseenter="showDelete(index)" @mouseleave="downDelete(index)" v-for="(item,index) in theVal"
+          style="text-align: left; padding-left: 30px; border-bottom: 1px solid black;font-family: Arial, Helvetica, sans-serif;">
+          {{item}}
+          <!-- <a :class="'deleteBtn'+index" style="display: none;text-align: right;" @click="removeVal(index)">删除</a> -->
+          <input :id="'btnDisplay'+index" type="button"
+            style="display: none; float: right;line-height: 30px;height: 50px;background-color: antiquewhite;border: 0;"
+            value="删除" @click="removeVal(index)">
         </li>
       </ol>
+      <div v-if="theVal.length!=0">
+        <footer
+          style="float: left; text-align: left;padding-left: 10px;font-family: 'Courier New', Courier, monospace;">
+          {{theVal.length}} 条记录</footer>
+        <footer style="float: right;padding-right: 10px;font-family: 'Courier New', Courier, monospace;" @click="deleteAll">clear</footer>
+      </div>
     </div>
-  </div>
 </body>
 <script>
   let demo = new Vue({
@@ -57,18 +69,22 @@
       showDelete(index) {
         // console.log(document.querySelector(".deleteBtn"));
         // console.log(document.getElementsByClassName(".deleteBtn")[0]);
-        document.querySelector(".deleteBtn" + index).style.display = 'inline'
+        document.querySelector("#btnDisplay" + index).style.display = 'inline'
       },
       downDelete(index) {
-        document.querySelector(".deleteBtn" + index).style.display = 'none'
+        document.querySelector("#btnDisplay" + index).style.display = 'none'
       },
       inputVal() {
         this.theVal.push(this.message);
         this.index++;
+        this.message = "";
       },
       removeVal(index) {
         this.theVal.splice(index, 1);
         this.index--;
+      },
+      deleteAll(){
+        this.theVal=[];
       }
     },
   })
