@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app1">
+    <input type="button" value="正常写法" v-on:click="func">
+    <input type="button" value="简写" @click="func">
+    <input type="button" value="双击事件" @dblclick="func">
+    <h1 @click='add'>{{message}}</h1>
+    <input type="text" @keyup.enter="submit">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    let demo = new Vue({
+      el: '#app1',
+      data: {
+        message: 'CQ',
+      },
+      methods: {
+        func() {
+          console.log("success");
+        },
+        add() {
+          this.message += "ONE";
+        },
+        submit() {
+          alert("提交成功！")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

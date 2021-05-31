@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 
+    动态绑定属性 如 src class title等属性
+   -->
+  <div id="app1">
+    <input type="button" value="处理" @click='deal'>
+    <img v-bind:src='src' :title="thTitle+'!!!'">
+    <img :src='src'>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    let demo = new Vue({
+      el: '#app1',
+      data: {
+        src: "../photo/wallhaven-8o3o7k.jpg",
+        thTitle: "宇航员"
+      },
+      methods: {
+        deal() {
+          this.src = "../photo/wallhaven-6oj73l.jpg";
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

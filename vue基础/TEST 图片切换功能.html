@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <style>
+    .left {
+      position: fixed;
+      left: 0px;
+      top: 50%;
+    }
+
+    .right {
+      top: 50%;
+      right: 2px;
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <a class="left" @click="leftClick" v-show="i!=0">
+      <img src="../photo/OIP (1).jfif" alt="">
+    </a>
+    <span class="content">
+      <img :src="'../photo/'+contentSrc[i]">
+    </span>
+    <a class="right" @click="rightClick" v-show="i!=(contentSrc.length-1)">
+      <img src="../photo/OIP (2).jfif" alt="">
+    </a>
+  </div>
+</body>
+<script>
+  let demo = new Vue({
+    el: '.demo',
+    data: {
+      leftShow: false,
+      rightShow: true,
+      i: 0,
+      contentSrc: ["wallhaven-6oj73l.jpg", "wallhaven-8o3o7k.jpg", "wallhaven-ymzz2x.jpg"],
+    },
+    methods: {
+      leftClick() {
+        this.i--;
+      },
+      rightClick() {
+        this.i++;
+      }
+    },
+  })
+</script>
+
+</html>

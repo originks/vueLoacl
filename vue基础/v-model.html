@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<!-- 注意： 只有表单元素才有v-model -->
+
+<body>
+  <div class="demo">
+    <input type="text" v-model="message" name="" id="">
+    <h5>{{message}}</h5>
+  </div>
+</body>
+<script>
+  let demo = new Vue({
+    el:".demo",
+    data:{
+      message:"重庆邮电大学"
+    }
+  })
+</script>
+
+</html>

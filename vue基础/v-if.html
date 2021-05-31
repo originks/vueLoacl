@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 
+    v-if 的值会转为Boolean，true就展示，false就隐藏
+    注意和v-show区分，v-if会直接删除dom树,,,,,对性能消耗比较大
+   -->
+  <div id="app1">
+    <input type="button" value="显示|隐藏" @click='deal'>
+    <img src="/photo/wallhaven-8o3o7k.jpg" v-if='count'>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    let demo = new Vue({
+      el: '#app1',
+      data: {
+        count: true,
+      },
+      methods: {
+        deal() {
+          this.count = !this.count;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

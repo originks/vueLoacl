@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #mainHead {
+      text-align: center;
+    }
+
+    #demo {
+      display: inline-block;
+      background-color: antiquewhite;
+      width: 500px;
+    }
+
+    input {
+      border: 0px;
+      background-color: antiquewhite;
+      width: 400px;
+      height: 30px;
+    }
+    li{
+      height: 50px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mainHead">
+    <h2 id="header">记事本</h2>
+    <div id="demo">
+      <ol>
+        <input type="text" placeholder="请输入待办事项" @keydown.enter="inputVal" v-model="message">
+        <li @mouseenter="showDelete(index)" @mouseleave="downDelete(index)" v-for="(item,index) in theVal"
+          style="text-align: left;border-bottom: 1px solid black;">{{item}}
+          <a :class="'deleteBtn'+index" style="display: none;" @click="removeVal(index)">删除</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</body>
+<script>
+  let demo = new Vue({
+    el: '#demo',
+    data: {
+      index: 0,
+      theVal: [],
+      message: ""
+    },
+    methods: {
+      showDelete(index) {
+        // console.log(document.querySelector(".deleteBtn"));
+        // console.log(document.getElementsByClassName(".deleteBtn")[0]);
+        document.querySelector(".deleteBtn" + index).style.display = 'inline'
+      },
+      downDelete(index) {
+        document.querySelector(".deleteBtn" + index).style.display = 'none'
+      },
+      inputVal() {
+        this.theVal.push(this.message);
+        this.index++;
+      },
+      removeVal(index) {
+        this.theVal.splice(index, 1);
+        this.index--;
+      }
+    },
+  })
+</script>
+
+</html>

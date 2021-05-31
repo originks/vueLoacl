@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 
+    v-show 的值会转为Boolean，true就展示，false就隐藏
+    本质上是控制元素的display
+   -->
+  <div id="app1">
+    <input type="button" value="显示|隐藏" @click='deal'>
+    <img src="/photo/wallhaven-8o3o7k.jpg" v-show='count'>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script>
+    let demo = new Vue({
+      el: '#app1',
+      data: {
+        count: true,
+      },
+      methods: {
+        deal() {
+          this.count = !this.count;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

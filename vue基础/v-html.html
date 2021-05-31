@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    相对于v-text可以自动解析html语言
+   -->
+  <div id="app1" v-text="message"></div>
+  <div id="app2" v-html="message"></div>
+  <script>
+    let demo = new Vue({
+      el: '#app1',
+      data: {
+        message: '<span>CQ</span>',
+      }
+    })
+    let demo2 = new Vue({
+      el: '#app2',
+      data: {
+        message: '<span>CQ</span>',
+      }
+    })
+  </script>
+</body>
+
+</html>
