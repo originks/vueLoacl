@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地球天气</title>
+  <link rel="icon" href="/photo/状态栏.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 引入axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    input:focus {
+      outline: none;
+    }
+
+    *::-webkit-input-placeholder {
+    color: black;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    #thisUl li {
+      margin-top: 30px;
+      display: inline-block;
+      width: 19%;
+      text-align: center;
+      border-right: 1px dashed black;
+    }
+
+    #thisUl li:last-child {
+      border-right: 0px;
+    }
+
+    body {
+      background-image: url(/photo/动态天气背景图.gif);
+      background-size: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="weatherApp">
+    <div style="text-align: center;">
+      <!-- <img src="/photo/天气图标.jpg" style="width: 200px;text-align: center;padding-top: 100px;" alt=""> -->
+      <h1
+        style="letter-spacing: 20px; font-family:STCaiyun; display: inline-block; width: 300px;text-align: center;padding-top: 100px;">
+        每日天气</h1>
+    </div>
+    <div style="text-align: center; font-size: 0; margin: 0; padding: 0;">
+      <div style="display: inline-block;text-align: left;">
+        <input type="text" @keydown.enter="resarch" v-model="city" placeholder="请输入天气"
+          style="color: black; background-color: transparent; padding-left: 20px; border-color: rgb(111, 175, 235); vertical-align: top; width: 400px;height: 25px; border-radius: 10px 0 0 10px;border-right: 0px; margin-top: 30px;">
+        <input type="button" @click="resarch"
+          style="border: 0; width: 50px; background-color: rgb(111, 175, 235); border-radius: 0 10px 10px 0; vertical-align: top; height: 31px;margin-top: 30px;"
+          value="搜索">
+        <ul style="font-size: 10px;">
+          <li>查看主要城市：</li>
+          <li style="cursor:pointer" @click=selectCity("北京")>北京</li>
+          <li style="cursor:pointer" @click=selectCity("上海")>上海</li>
+          <li style="cursor:pointer" @click=selectCity("重庆")>重庆</li>
+          <li style="cursor:pointer" @click=selectCity("深圳")>深圳</li>
+        </ul>
+      </div>
+    </div>
+    <ul id="thisUl" style="display: inline; list-style: none;">
+      <li v-for="item in weatherList">
+        <label for="" style=" color: orange; font-size: 60px; font-family:San Francisco;">{{item.type}}</label>
+        <span style="display: inline-block; color: orange; margin-top: 10px;">{{item.low}}~~~~~{{item.high}}</span>
+        <footer
+          style="font-size: x-large; color: black; margin-top: 20px; font-family: 'Courier New', Courier, monospace;">
+          {{item.date}}</footer>
+      </li>
+    </ul>
+  </div>
+
+</body>
+<script src="js/天气查询.js"></script>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 引入axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script></script>
+</head>
+
+<body>
+  <div id="demo">
+    <input type="text" v-model="names">
+    <br>
+    <input type="button" value="获取笑话" id="input1">
+    <input type="button" value="注册信息" id="input2">
+    <ol>
+      <li v-for="item in message">{{item}}</li>
+    </ol>
+  </div>
+
+</body>
+<script>
+  var test = new Vue({
+    el: "#demo",
+    data: {
+      message: [],
+      names: '默认',
+      age: '18',
+    }
+  })
+  document.querySelector("#input1").onclick = function () {
+    axios.get("https://autumnfish.cn/api/joke/list?num=3").then(function (rec) {
+      console.log(rec.data.jokes);
+      for (var i = 0; i < rec.data.jokes.length; i++) {
+
+        test.message.push(rec.data.jokes[i]);
+      }
+    })
+  }
+  var name = test.names;
+
+  document.querySelector("#input2").onclick = function () {
+    axios.post("https://autumnfish.cn/api/user/reg", {
+      username: name,
+    }).then(function (rec) {
+      console.log(rec);
+    })
+  }
+</script>
+
+</html>
