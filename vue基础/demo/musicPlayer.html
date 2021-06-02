@@ -14,10 +14,28 @@
 <body>
   <div id="musicApp">
     <div id="allPanel">
+      <!-- 搜索面板 -->
       <div id="playSearchPanel">
         <span id="musicIconSpan"><img src="/photo/music.png" id="musicIcon"></span>
-        <input type="text" id="searchInput">
+        <input type="text" id="searchInput" v-model="query" @keyup.enter="querySongs">
         <img id="searchIcon" src="/photo/搜索.png">
+      </div>
+      <div id="mainPanel">
+        <div id="left">
+          <ul id="playUl">
+            <li class="playLi" style="text-align: center;">歌曲列表</li>
+            <li class="playLi" v-for="item in songsList">
+              <img @click="playSongs(item.id)" id="playIcon" src="/photo/播放.png">
+              <span id="songsName">{{item.name}}</span></li>
+          </ul>
+        </div>
+        <div id="main">
+          <img :src="songsImg" id="songsImgs">
+        </div>
+        <div id="right"></div>
+      </div>
+      <div id="audioDiv">
+        <audio :src="audioUrl" ref="audio" id="audio" controls="controls" autoplay="autoplay"></audio>
       </div>
     </div>
   </div>
