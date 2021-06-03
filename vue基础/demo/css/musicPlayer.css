@@ -125,16 +125,15 @@ ul {
   padding: 10px;
 }
 
-.playLi {
+.playLi,
+.commentLi {
   line-height: 49px;
   background-color: beige;
   border: 1px solid rgb(112, 97, 79);
   border-radius: 4px;
 }
 
-#songsName {
-  height: 15px;
-}
+
 
 #audioDiv {
   height: 54px;
@@ -161,6 +160,7 @@ ul {
   to {
     transform: rotate(360deg)
   }
+
 }
 
 
@@ -168,4 +168,70 @@ ul {
   animation-name: fucks;
   animation-duration: 20s;
   animation-iteration-count: infinite;
+}
+
+#commentUl {
+  padding: 10px;
+}
+
+.commentLi {
+  padding: 10px 10px;
+}
+
+#commentImg {
+  vertical-align: top;
+  border-radius: 50%;
+  width: 50px;
+}
+
+#nickName {
+  vertical-align: top;
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  margin: 0px;
+  line-height: 20px;
+  color: rgb(42, 161, 72);
+}
+
+#comments {
+  display: inline-block;
+  line-height: 20px;
+  text-indent: 2em;
+  font-size: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#mvIcon {
+  width: 15px;
+  float: right;
+  /* padding: 20px 0px; */
+}
+
+#playLi {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+video {
+  position: fixed;
+ 
+  left: 50%;
+  top: 50%;
+  margin-top: -273px;
+  transform: translateX(-50%);
+  z-index: 990;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 980;
+  background-color: rgba(0, 0, 0, 0.8);
 }

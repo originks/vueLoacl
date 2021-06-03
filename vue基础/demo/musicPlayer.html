@@ -24,22 +24,31 @@
         <div id="left">
           <ul id="playUl">
             <li class="playLi" style="text-align: center;">歌曲列表</li>
-            <li class="playLi" v-for="item in songsList">
+            <li class="playLi" id="playLi" v-for="item in songsList">
               <img @click="playSongs(item.id)" id="playIcon" src="/photo/播放.png">
-              <span id="songsName">{{item.name}}</span></li>
+              <span id="songsName">{{item.name}}<img id="mvIcon" src="/photo/MV.png" v-if="item.mvid!=0"
+                  @click=playMV(item.mvid)></span>
+            </li>
           </ul>
         </div>
         <div id="main">
           <img :src="songsImg" id="songsImgs">
         </div>
         <div id="right">
-          <ul id="">
-            <li>歌曲评论</li>
+          <ul id="commentUl">
+            <li class="commentLi" style="text-align: center;">歌曲评论</li>
+            <li class="commentLi" v-for="item in commentList">
+              <img id="commentImg" :src="item.user.avatarUrl">
+              <h5 id="nickName">{{item.user.nickname}}</h5>
+              <span id="comments">{{item.content}}</span>
+            </li>
           </ul>
         </div>
       </div>
       <div id="audioDiv">
         <audio :src="audioUrl" ref="audio" id="audio" controls="controls" autoplay="autoplay"></audio>
+        <video :src="mvUrl" id="vidoeId" controls="controls" v-if="mvshow"></video>
+        <div class="mask" @click="returnMainPanel" v-if="mvshow"></div>
       </div>
     </div>
   </div>
